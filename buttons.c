@@ -16,11 +16,11 @@ unsigned char key_pressed(unsigned short key)
 void move_square(struct square* s)
 {
     if (key_pressed(KEY_DOWN))
-        s->y += 3;
+        s->y += 1;
     if (key_pressed(KEY_UP))
-        s->y -= 3;
+        s->y -= 1;
     if (key_pressed(KEY_RIGHT))
-        s->x += 3;
+        s->x += 1;
     if (key_pressed(KEY_LEFT))
-        s->x -= 3;
+        s->x -= 1;
 }

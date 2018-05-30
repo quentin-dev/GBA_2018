@@ -25,6 +25,11 @@ extern volatile unsigned short* front_buffer;
 extern volatile unsigned short* back_buffer;
 extern volatile unsigned short* palette;
 extern volatile unsigned long* display_control;
+extern volatile unsigned short* scanline_counter;
+
 unsigned char add_color(unsigned char r, unsigned char g, unsigned char b);
+void wait_vblank();
+
+void update_screen(volatile unsigned short* buffer, unsigned short color, struct square* s);
 
 #endif

@@ -6,6 +6,7 @@ volatile unsigned short* palette = (volatile unsigned short*) 0x5000000;
 volatile unsigned short* front_buffer = (volatile unsigned short*) 0x6000000;
 volatile unsigned short* back_buffer = (volatile unsigned short*) 0x600A000;
 volatile unsigned long* display_control = (volatile unsigned long*) 0x4000000;
+volatile unsigned short* scanline_counter = (volatile unsigned short*) 0x4000006;
 
 int next_palette_index = 0;
 
@@ -60,5 +61,19 @@ volatile unsigned short* flip_buffers(volatile unsigned short* buffer)
     } else {
         *display_control |= SHOW_BACK;
         return front_buffer;
+    }
+}
+
+void wait_vblank()
+{
+    while(*scanline_counter < 160){}
+}
+
+void update_screen(volatile unsigned short* buffer, unsigned short color, struct square* s)
+{
+    short row, col;
+    for(row = s->y - 3; row < (s->y + s->size + 3); row++){
+        for(col = s->x - 3; col < (s->x + s->size + 3); col++)
+            put_pixel(buffer, row, col, color);
     }
 }
