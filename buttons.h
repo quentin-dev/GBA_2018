@@ -1,3 +1,6 @@
+#ifndef BUTTONS_H_
+#define BUTTONS_H_
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -12,7 +15,7 @@
 #define KEY_SR 0x0100
 #define KEY_SL 0x0200
 
-//volatile unsigned short* KEY_INPUT = (volatile unsigned short*) 0x04000130;
+extern volatile unsigned short* KEY_INPUT;
 
 typedef struct square square;
 struct square {
@@ -21,4 +24,6 @@ struct square {
 
 unsigned char key_pressed(unsigned short key);
 
-void move_square(struct square* s);
+void move_square(square* s);
+
+#endif
