@@ -4,6 +4,7 @@ then
     rm main.gba
     rm main.elf
     rm main.o
+    rm buttons.o
 else
     arm-none-eabi-gcc -c main.c -mthumb-interwork -mthumb -O2 -o main.o
     arm-none-eabi-gcc -c buttons.c -mthumb-interwork -mthumb -O2 -o buttons.o
